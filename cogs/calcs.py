@@ -65,7 +65,7 @@ class Recruit(interactions.Extension):
         else:
             rate = rates[worker.lower()]
             price = prices[resource.lower()]
-            payment = int(amount) * price * rate
+            payment = int(amount) * price * rate / 100
             msg = "payment is "+ {:,}.format(payment) + " gold coins."
             await ctx.send(msg)
 

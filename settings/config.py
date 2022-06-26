@@ -64,10 +64,10 @@ prices = {
         
 }
 rates = {
-    "worker": 1,
-    "elite worker": 1,
-    "goat worker": 1,
-    "supreme worker": 1,
-    "immortal worker": 1,
-    "knight of workers": 1
+    "worker": 99,
+    "elite worker": 99.1,
+    "goat worker": 99.2,
+    "supreme worker": 99.3,
+    "immortal worker": 99.4,
+    "knight of workers": 99.5
 }
