@@ -67,7 +67,7 @@ class Recruit(interactions.Extension):
             rate = rates[worker.lower()]
             price = prices[resource.lower()]
             payment = int(amount) * price * rate / 100
-            msg = "payment is "+ {:,}.format(payment) + " gold coins."
+            msg = f"payment is {payment:,} gold coins."
             await ctx.send(msg)
 
     @interaction.extension_autocomplete("pay", "resource")
