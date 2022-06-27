@@ -15,7 +15,7 @@ prices = {
         "apple wood": 2000,
         "willow log": 4000,
         "oak log": 4000,
-        "chestnut log": 5"000,
+        "chestnut log": 5000,
         "maple log": 5000,
         "olive log": 7000,
         "palm wood": 7000,
