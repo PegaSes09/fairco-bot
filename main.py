@@ -14,7 +14,7 @@ import logging
 
 
 #presence = it.PresenceActivity(name="Calculator", type=it.PresenceActivityType.GAME)
-bot = Client(token=TOKEN,disable_sync=False)#,presence=it.ClientPresence(activities=[presence]),disable_sync=False)
+bot = Client(token=TOKEN,disable_sync=False)
 logging.basicConfig(level=logging.DEBUG)
 
 @bot.event
