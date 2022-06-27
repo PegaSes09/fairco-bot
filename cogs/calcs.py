@@ -30,7 +30,8 @@ class Calc(interactions.Extension):
 
 
 
-
+    @interactions.extension_command(name="ping",description="show ping")
+    async def
 
     @interactions.extension_command(
         name="pay",
@@ -58,29 +59,29 @@ class Calc(interactions.Extension):
                 autocomplete=True,
             )
         ],
-        scope = 839662151010353172
+        scope = [839662151010353172,922854662141526037]
     )
-    async def pay(ctx: CC, worker: str, amount: str, resource: str):
+    async def pay(self,ctx: CC, worker: str, amount: str, resource: str):
         if not int(ammount) :
             await ctx.send("amount must be a number")
         else:
-            rate = rates[worker.lower()]
-            price = prices[resource.lower()]
+            rate = self.rates[worker.lower()]
+            price = self.prices[resource.lower()]
             payment = int(amount) * price * rate / 100
             msg = f"payment is {payment:,} gold coins."
             await ctx.send(msg)
 
     @interactions.extension_autocomplete("pay", "resource")
-    async def resource_autocomplete(ctx: CC, value: str = ""):
-        resources_prices = list(prices.keys())
+    async def resource_autocomplete(self,ctx: CC, value: str = ""):
+        resources_prices = list(self.prices.keys())
         choices = [
             it.Choice(name=price, value=price) for price in resources_prices if value in price
         ] 
         await ctx.populate(choices)
         
     @interactions.extension_autocomplete("pay", "tier")
-    async def worker_autocomplete(ctx: CC, value: str = ""):
-        workers = list(rates.keys())
+    async def worker_autocomplete(self,ctx: CC, value: str = ""):
+        workers = list(self.rates.keys())
         choices = [
             it.Choice(name=worker, value=worker) for worker in workers if value in worker
         ] 
