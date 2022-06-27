@@ -11,7 +11,7 @@ from settings.config import *
 
 
 
-class Recruit(interactions.Extension):
+class Calc(interactions.Extension):
 
     def __init__(self,client : Client) -> None:
         self.bot = client
@@ -70,7 +70,7 @@ class Recruit(interactions.Extension):
             msg = f"payment is {payment:,} gold coins."
             await ctx.send(msg)
 
-    @interaction.extension_autocomplete("pay", "resource")
+    @interactions.extension_autocomplete("pay", "resource")
     async def resource_autocomplete(ctx: CC, value: str = ""):
         resources_prices = list(prices.keys())
         choices = [
@@ -78,7 +78,7 @@ class Recruit(interactions.Extension):
         ] 
         await ctx.populate(choices)
         
-    @interaction.extension_autocomplete("pay", "tier")
+    @interactions.extension_autocomplete("pay", "tier")
     async def worker_autocomplete(ctx: CC, value: str = ""):
         workers = list(rates.keys())
         choices = [
@@ -88,4 +88,4 @@ class Recruit(interactions.Extension):
 
 
 def setup(client : Client):
-    Recruit(client)
+    Calc(client)
