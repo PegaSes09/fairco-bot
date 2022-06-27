@@ -31,7 +31,8 @@ class Calc(interactions.Extension):
 
 
     @interactions.extension_command(name="ping",description="show ping")
-    async def
+    async def ping(self,ctx:CC):
+        await ctx.send(f"pong ! {round(self.bot.latency)} ms.")
 
     @interactions.extension_command(
         name="pay",
