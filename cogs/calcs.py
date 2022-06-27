@@ -60,7 +60,7 @@ class Calc(interactions.Extension):
                 autocomplete=True,
             )
         ],
-        scope = [839662151010353172,922854662141526037]
+        scope = [839662151010353172,922854662141526037,712120246915301429]
     )
     async def pay(self,ctx: CC, worker: str, amount: str, resource: str):
         if not int(ammount) :
