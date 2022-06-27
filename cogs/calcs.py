@@ -60,9 +60,9 @@ class Recruit(interactions.Extension):
         ],
         scope = 839662151010353172
     )
-    async def pay(ctx: CC,worker: str ="",amount: str ="" resource: str =""):
-        if worker == "" or amount == "" or resource == "" :
-            await ctx.send("a parameter is missing")
+    async def pay(ctx: CC, worker: str, amount: str, resource: str):
+        if not int(ammount) :
+            await ctx.send("amount must be a number")
         else:
             rate = rates[worker.lower()]
             price = prices[resource.lower()]
