@@ -57,7 +57,8 @@ class Recruit(interactions.Extension):
                 required=True,
                 autocomplete=True,
             )
-        ]
+        ],
+        scope = 839662151010353172
     )
     async def pay(ctx: CC,worker: str ="",amount: str ="" resource: str =""):
         if worker == "" or amount == "" or resource == "" :
