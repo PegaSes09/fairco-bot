@@ -34,32 +34,32 @@ prices = {
         "cursed relic": 3000,
         "ice relic": 3000,
         
-        "coal": 2500,
-        "crimsteel ore": 2500,
-        "gold ore": 2000,
-        "mythan ore": 6000,
-        "cobalt ore": 8000,
-        "varaxium ore": 10000,
-        "magic ore": 9000,
+        "coal": 2500
+        #"crimsteel ore": 2500,
+        #"gold ore": 2000,
+        #"mythan ore": 6000,
+        #"cobalt ore": 8000,
+        #"varaxium ore": 10000,
+        #"magic ore": 9000,
         
-        "crimsteel bar": 15000,
-        "gold bar": 6000,
-        "mythan bar": 80000,
-        "cobalt bar": 90000,
-        "varaxium bar": 100000,
-        "magic bar": 100000,
+        #"crimsteel bar": 15000,
+        #"gold bar": 6000,
+        #"mythan bar": 80000,
+        #"cobalt bar": 90000,
+        #"varaxium bar": 100000,
+        #"magic bar": 100000,
         
-        "salt": 3000,
-        "pink salt": 6000,
-        "black salt": 4000,
-        "scallop": 2000,
-        "grasshopper": 10000,
-        "bass": 35000,
+        #"salt": 3000,
+        #"pink salt": 6000,
+        #"black salt": 4000,
+        #"scallop": 2000,
+        #"grasshopper": 10000,
+        #"bass": 35000,
         
-        "magic essence": 1000,
-        "paper": 500,
-        "leather": 3000,
-        "book": 9000
+        #"magic essence": 1000,
+        #"paper": 500,
+        #"leather": 3000,
+        #"book": 9000
         
         
 }
