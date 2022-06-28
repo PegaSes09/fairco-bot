@@ -76,7 +76,7 @@ class Calc(interactions.Extension):
     async def resource_autocomplete(self,ctx: CC, value: str = ""):
         resources_prices = list(self.prices.keys())
         choices = [
-            it.Choice(name=price, value=price) for price in resources_prices if value in price
+            it.Choice(name=price, value=price) for price in resources_prices if value.lower() in price.lower()
         ] 
         await ctx.populate(choices)
         
@@ -84,7 +84,7 @@ class Calc(interactions.Extension):
     async def worker_autocomplete(self,ctx: CC, value: str = ""):
         workers = list(self.rates.keys())
         choices = [
-            it.Choice(name=worker, value=worker) for worker in workers if value in worker
+            it.Choice(name=worker, value=worker) for worker in workers if value.lower() in worker.lower()
         ] 
         await ctx.populate(choices)
 
