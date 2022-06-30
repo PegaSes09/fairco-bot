@@ -43,7 +43,7 @@ class Calc(interactions.Extension):
                 name="tier",
                 description="the worker's tier",
                 required=True,
-                autocomplete=True,
+                autocomplete=False,
             ),
             it.Option(
                 type=it.OptionType.STRING,
@@ -62,16 +62,18 @@ class Calc(interactions.Extension):
         ],
         scope = [839662151010353172,922854662141526037,712120246915301429]
     )
-    async def pay(self,ctx: CC, worker: str, amount: str, resource: str):
+    async def pay(self,ctx: CC, tier: str, amount: str, resource: str):
         if not int(ammount) :
             await ctx.send("amount must be a number")
         elif resource.lower() not in list(self.prices.keys()):
             await ctx.send("invalid resource name !")
+        elif resource.lower() not in list(self.prices.keys()):
+            await ctx.send("invalid tier name !")
         else:
-            rate = self.rates[worker.lower()]
+            rate = self.rates[tier.lower()]
             price = self.prices[resource.lower()]
             payment = int(amount) * price * rate / 100
-            msg = f"payment for {amount} {resource.lower()}'s is {payment:,} gold coins."
+            msg = f"*{tier.lower()}* \npayment for {amount} {resource.lower()}'s is {payment:,} gold coins."
             await ctx.send(msg)
 
     #@interactions.extension_autocomplete("pay", "resource")
@@ -82,13 +84,13 @@ class Calc(interactions.Extension):
         #] 
         #await ctx.populate(choices)
         
-    @interactions.extension_autocomplete("pay", "tier")
-    async def worker_autocomplete(self,ctx: CC, value: str = ""):
-        workers = list(self.rates.keys())
-        choices = [
-            it.Choice(name=worker, value=worker) for worker in workers if value.lower() in worker.lower()
-        ] 
-        await ctx.populate(choices)
+    #@interactions.extension_autocomplete("pay", "tier")
+    #async def worker_autocomplete(self,ctx: CC, value: str = ""):
+        #workers = list(self.rates.keys())
+        #choices = [
+            #it.Choice(name=worker, value=worker) for worker in workers if value.lower() in worker.lower()
+        #] 
+        #await ctx.populate(choices)
 
 
 def setup(client : Client):
