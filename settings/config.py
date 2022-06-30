@@ -34,9 +34,9 @@ prices = {
         "cursed relic": 3000,
         "ice relic": 3000,
         
-        "coal": 2500
+        "coal": 2500,
         "crimsteel ore": 2500,
-        #
+        
         "gold ore": 2000,
         "mythan ore": 6000,
         "cobalt ore": 8000,
