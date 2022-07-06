@@ -1,9 +1,4 @@
 import os
-"""the channel id where the applications will be sent"""
-#CHANNEL_ID = 960586298710708284
-
-"""the server id"""
-#SERVER_ID = os.getenv("SERVER_ID")
 
 """the bot token saved in env vars as 'TOKEN' """
 TOKEN = os.getenv("TOKEN")
@@ -36,7 +31,6 @@ prices = {
         
         "coal": 2500,
         "crimsteel ore": 2500,
-        
         "gold ore": 2000,
         "mythan ore": 6000,
         "cobalt ore": 8000,
@@ -44,7 +38,7 @@ prices = {
         "magic ore": 9000,
         
         "crimsteel bar": 15000,
-        "gold bar": 6000,
+        "gold bar": 600000,
         "mythan bar": 80000,
         "cobalt bar": 90000,
         "varaxium bar": 100000,
@@ -53,16 +47,104 @@ prices = {
         "salt": 3000,
         "pink salt": 6000,
         "black salt": 4000,
-        "scallop": 2000,
-        "grasshopper": 10000,
-        "bass": 35000,
+        "scallop": 4000,
+        "grasshopper": 9000,
+        "bass": 33000,
         
-        "magic essence": 1000,
-        "paper": 500,
+        "magic essence": 800,
+        "paper": 700,
         "leather": 3000,
-        "book": 9000
+        "book": 10000
         
         }
+
+
+
+
+
+
+
+
+
+
+woodcutter = [
+        "pine log",
+        "dead log",
+        "birch log",
+        "apple wood",
+        "willow log",
+        "oak log",
+        "chestnut log",
+        "maple log",
+        "olive log",
+        "palm wood",
+        "magic log"
+        ]
+        
+crafter = [
+        "accuracy relic",
+        "guarding relic",
+        "healing relic",
+        "wealth relic",
+        "power relic",
+        "nature relic",
+        "fire relic",
+        "damage relic",
+        "leeching relic",
+        "experience relic",
+        "cursed relic",
+        "ice relic"
+        ]
+        
+miner = [
+        "coal",
+        "crimsteel ore",
+        "gold ore",
+        "mythan ore",
+        "cobalt ore",
+        "varaxium ore",
+        "magic ore"
+        ]
+        
+smither = [
+        "crimsteel bar",
+        "gold bar",
+        "mythan bar",
+        "cobalt bar",
+        "varaxium bar",
+        "magic bar"
+        ]
+        
+fisher = [
+        "salt",
+        "pink salt",
+        "black salt",
+        "scallop",
+        "grasshopper",
+        "bass"
+        ]
+
+tailor = [
+        "magic essence",
+        "paper",
+        "leather",
+        "book"
+        ]
+
+jobs = [woodcutter,crafter,miner,smither,fisher,tailor]
+
+job_list = ["woodcutter","crafter","miner","smither","fisher","tailor"]
+
+worker_tiers = [
+        "worker",
+        "elite worker",
+        "goat worker",
+        "supreme worker",
+        "immortal worker",
+        "knight of workers"
+        ]  
+
+
         
         
 rates = {
