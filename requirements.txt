@@ -1,1 +1,2 @@
 discord-py-interactions
+-U interactions-wait-for
