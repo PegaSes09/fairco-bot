@@ -155,3 +155,72 @@ rates = {
     "immortal worker": 99.4,
     "knight of workers": 99.5
 }
+
+
+resources_list = {
+    "logs" : [
+        "pine log",
+        "dead log",
+        "birch log",
+        "apple wood",
+        "willow log",
+        "oak log",
+        "chestnut log",
+        "maple log",
+        "olive log",
+        "palm wood",
+        "magic log"
+        ]
+        
+    "relics" : [
+        "accuracy relic",
+        "guarding relic",
+        "healing relic",
+        "wealth relic",
+        "power relic",
+        "nature relic",
+        "fire relic",
+        "damage relic",
+        "leeching relic",
+        "experience relic",
+        "cursed relic",
+        "ice relic"
+        ]
+        
+    "ores" : [
+        "coal",
+        "crimsteel ore",
+        "gold ore",
+        "mythan ore",
+        "cobalt ore",
+        "varaxium ore",
+        "magic ore"
+        ]
+        
+    "bars" : [
+        "crimsteel bar",
+        "gold bar",
+        "mythan bar",
+        "cobalt bar",
+        "varaxium bar",
+        "magic bar"
+        ]
+        
+    "fish_salt" : [
+        "salt",
+        "pink salt",
+        "black salt",
+        "scallop",
+        "grasshopper",
+        "bass"
+        ]
+
+    "magic" : [
+        "magic essence",
+        "paper",
+        "leather",
+        "book"
+        ]
+    }
+
+
