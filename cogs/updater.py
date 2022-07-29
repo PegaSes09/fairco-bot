@@ -29,7 +29,7 @@ class Calc(interactions.Extension):
                             "bars":self.bars,
                             "fish_salt": self.fish_salt,
                             "magic": self.magic
-                          }
+                        }
         return
     
     def insert_item(self,category:str,item:str,value:int):

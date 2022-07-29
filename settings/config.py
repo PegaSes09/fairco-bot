@@ -170,8 +170,8 @@ resources_list = {
         "olive log",
         "palm wood",
         "magic log"
-        ]
-        
+        ],
+
     "relics" : [
         "accuracy relic",
         "guarding relic",
@@ -185,8 +185,8 @@ resources_list = {
         "experience relic",
         "cursed relic",
         "ice relic"
-        ]
-        
+        ],
+
     "ores" : [
         "coal",
         "crimsteel ore",
@@ -195,8 +195,8 @@ resources_list = {
         "cobalt ore",
         "varaxium ore",
         "magic ore"
-        ]
-        
+        ],
+
     "bars" : [
         "crimsteel bar",
         "gold bar",
@@ -204,8 +204,8 @@ resources_list = {
         "cobalt bar",
         "varaxium bar",
         "magic bar"
-        ]
-        
+        ],
+
     "fish_salt" : [
         "salt",
         "pink salt",
@@ -213,7 +213,7 @@ resources_list = {
         "scallop",
         "grasshopper",
         "bass"
-        ]
+        ],
 
     "magic" : [
         "magic essence",

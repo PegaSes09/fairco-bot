@@ -16,9 +16,18 @@ import logging
 
 
 
+
 #presence = it.PresenceActivity(name="Calculator", type=it.PresenceActivityType.GAME)
 bot = Client(token=TOKEN,disable_sync=False)
 #logging.basicConfig(level=logging.DEBUG)
+
+categories = [ "logs",
+                "ores",
+                "relics",
+                "bars",
+                "fish_salt",
+                "magic"
+            ]
 
 setup(bot)
 
@@ -70,20 +79,20 @@ def make_menu(options_list:list[str],ph:str,id:str):
     """create SelectMenu from given parameters"""
     menu_options = []
     for option in options_list:
-        menu_options.append(it.SelectOption(label=option,value=option)
+        menu_options.append(it.SelectOption(label=option,value=option))
     menu = it.SelectMenu(options=menu_options,
-                         placeholder=ph,
-                         custom_id=id
+                        placeholder=ph,
+                        custom_id=id
                         )
     return menu
 
 
-def make_options(options_list:list[str]):
+def make_choices(choices_list:list[str]):
     """create SelectOption from given parameters"""
-    options = []
-    for option in options_list:
-        options.append(it.Option(label=option,value=option)
-    return options
+    choices = []
+    for choice in choices_list:
+        choices.append(it.Choice(name=choice,value=choice))
+    return choices
 
 
 
@@ -96,64 +105,66 @@ def make_options(options_list:list[str]):
         it.Option(
             name="update",
             description="update a resource price",
-            type=it.OptionType.SUB_COMMAND
+            type=it.OptionType.SUB_COMMAND,
             options=[
                 it.Option(
                     name="category",
                     description="the resource's category",
                     type=it.OptionType.STRING,
-                    choices = make_options(categories),
-                    required=True
+                    choices = make_choices(categories),
+                    required=True)
+                    ]
                 ),
         it.Option(
             name="insert",
             description="insert a new resource into database",
-            type=it.OptionType.SUB_COMMAND
+            type=it.OptionType.SUB_COMMAND,
             options=[
                 it.Option(
                     name="category",
                     description="the resource's category",
                     type=it.OptionType.STRING,
-                    choices = make_options(categories),
-                    required=True
+                    choices = make_choices(categories),
+                    required=True)
+                    ]
                 ),
         it.Option(
             name="delete",
             description="delete a resource from database",
-            type=it.OptionType.SUB_COMMAND
+            type=it.OptionType.SUB_COMMAND,
             options=[
                 it.Option(
                     name="category",
                     description="the resource's category",
                     type=it.OptionType.STRING,
-                    choices = make_options(categories),
-                    required=True
+                    choices = make_choices(categories),
+                    required=True)
+                    ]
                 ),
         it.Option(
             name="view",
             description="view resources of given category",
-            type=it.OptionType.SUB_COMMAND
+            type=it.OptionType.SUB_COMMAND,
             options=[
                 it.Option(
                     name="category",
                     description="the resource's category",
                     type=it.OptionType.STRING,
-                    choices = make_options(categories),
-                    required=True
+                    choices = make_choices(categories),
+                    required=True)
+                    ]   
                 )
             ]
         )
-    ]
-)
 async def resource(ctx: CC, sub_command: str, category: str):
     if sub_command == "insert":
-      await ctx.send(f"you inserted something new to {category}")
+        await ctx.send(f"you inserted something new to {category}")
     elif sub_command == "update":
-      await ctx.send(f"you updated {category}")
+        await ctx.send(f"you updated {category}")
     elif sub_command == "delete":
-      await ctx.send(f"you deleted something from {category}")
+        await ctx.send(f"you deleted something from {category}")
     elif sub_command == "view":
-      await ctx.send(f"you viewed {category}")
+        await ctx.send(f"you viewed {category}")
 
 
 
