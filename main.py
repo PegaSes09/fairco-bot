@@ -4,13 +4,10 @@ import interactions as it
 from interactions import Client, Button, ButtonStyle, SelectMenu, SelectOption, ActionRow
 from interactions import CommandContext as CC
 from interactions import ComponentContext as CPC
-import datetime
+from db_helper import retrieve
 
-import time
-import math
 from settings.config import *
 from interactions.ext.wait_for import wait_for, setup,wait_for_component
-
 
 import logging
 
@@ -21,13 +18,7 @@ import logging
 bot = Client(token=TOKEN,disable_sync=False)
 #logging.basicConfig(level=logging.DEBUG)
 
-categories = [ "logs",
-                "ores",
-                "relics",
-                "bars",
-                "fish_salt",
-                "magic"
-            ]
+
 
 setup(bot)
 
@@ -35,6 +26,7 @@ setup(bot)
 async def on_ready():
     bot_name = bot.me.name
     print(f"Logged in as {bot_name}!")
+
 def make_menu(items:list,ph:str,ci:str):
     options = []
     for item in items:
@@ -43,6 +35,7 @@ def make_menu(items:list,ph:str,ci:str):
                             placeholder=ph,
                             custom_id=ci)
     return menu
+
 def update_menu(menu:it.SelectMenu,selected_option:str):
     menu.default = selected_option
     return menu
@@ -67,104 +60,13 @@ def make_rsc_menu(menu:SelectMenu,items_list:list):
     return menu
 
 def calc(amount:int,rsc:str,tier:str):
-    price = prices[rsc.lower()]
+    prices_list = retrieve("prices_list")
+    price = prices_list[rsc.lower()]
     rate = rates[tier]
     payment = amount * price * rate / 100
     return int(payment)
 
 
-
-
-def make_menu(options_list:list[str],ph:str,id:str):
-    """create SelectMenu from given parameters"""
-    menu_options = []
-    for option in options_list:
-        menu_options.append(it.SelectOption(label=option,value=option))
-    menu = it.SelectMenu(options=menu_options,
-                        placeholder=ph,
-                        custom_id=id
-                        )
-    return menu
-
-
-def make_choices(choices_list:list[str]):
-    """create SelectOption from given parameters"""
-    choices = []
-    for choice in choices_list:
-        choices.append(it.Choice(name=choice,value=choice))
-    return choices
-
-
-
-
-
-@bot.command(
-    name="resource", 
-    description="modify the resource database", 
-    options= [
-        it.Option(
-            name="update",
-            description="update a resource price",
-            type=it.OptionType.SUB_COMMAND,
-            options=[
-                it.Option(
-                    name="category",
-                    description="the resource's category",
-                    type=it.OptionType.STRING,
-                    choices = make_choices(categories),
-                    required=True)
-                    ]
-                ),
-        it.Option(
-            name="insert",
-            description="insert a new resource into database",
-            type=it.OptionType.SUB_COMMAND,
-            options=[
-                it.Option(
-                    name="category",
-                    description="the resource's category",
-                    type=it.OptionType.STRING,
-                    choices = make_choices(categories),
-                    required=True)
-                    ]
-                ),
-        it.Option(
-            name="delete",
-            description="delete a resource from database",
-            type=it.OptionType.SUB_COMMAND,
-            options=[
-                it.Option(
-                    name="category",
-                    description="the resource's category",
-                    type=it.OptionType.STRING,
-                    choices = make_choices(categories),
-                    required=True)
-                    ]
-                ),
-        it.Option(
-            name="view",
-            description="view resources of given category",
-            type=it.OptionType.SUB_COMMAND,
-            options=[
-                it.Option(
-                    name="category",
-                    description="the resource's category",
-                    type=it.OptionType.STRING,
-                    choices = make_choices(categories),
-                    required=True)
-                    ]   
-                )
-            ]
-        )
-async def resource(ctx: CC, sub_command: str, category: str):
-    if sub_command == "insert":
-        await ctx.send(f"you inserted something new to {category}")
-    elif sub_command == "update":
-        await ctx.send(f"you updated {category}")
-    elif sub_command == "delete":
-        await ctx.send(f"you deleted something from {category}")
-    elif sub_command == "view":
-        await ctx.send(f"you viewed {category}")
 
 
 
@@ -175,7 +77,7 @@ async def resource(ctx: CC, sub_command: str, category: str):
 
 @bot.command(   name="pay", 
                 description="calculate worker's payment", 
-                scope = [922854662141526037,712120246915301429], 
+                scope = [839662151010353172,712120246915301429], 
                 options=[it.Option( name="job",
                                     description="the worker's job",
                                     type=it.OptionType.STRING,
@@ -194,13 +96,16 @@ async def resource(ctx: CC, sub_command: str, category: str):
                                     type=it.OptionType.STRING,
                                     required=True,
                                     autocomplete=False )
-                        ])
+                        ],
+                default_member_permissions=it.Permissions.ADMINISTRATOR
+            )
 async def pay(ctx:CC,job:str,amount:str):
     selected_tier = "worker"
     selected_job = job
     selected_rsc = "pine log"
 
-    rsc_list = jobs[job_list.index(job)]
+    resources = retrieve("resources_list")
+    rsc_list = resources[job_rsc[job]]
 
 
     await ctx.defer()
@@ -244,14 +149,14 @@ async def pay(ctx:CC,job:str,amount:str):
         btn_ctx: CC = await bot.wait_for_component( components=calc_btn, check=check, timeout=60) 
         default_rows[1] = ActionRow(components = [disable_button(calc_btn)])
         result = calc(int(amount),selected_rsc,selected_tier)
-        text = f"Payment for {amount} {selected_rsc} for {selected_tier} is {result:,}"
+        text = f"Payment for {int(amount):,} {selected_rsc} for {selected_tier} is {result:,}"
         await btn_ctx.edit(text,embeds=[], components=[])
     except asyncio.TimeoutError: 
         await ctx.edit("timed out!",components=[]) 
 
 #cogs = ["guilds"]
 #for cog in cogs:
-#bot.load("cogs.calcs")
-#print("calcs loaded")
+bot.load("cogs.updater")
+print("updater loaded")
 
 bot.start()

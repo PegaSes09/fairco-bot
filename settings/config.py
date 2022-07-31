@@ -2,6 +2,7 @@ import os
 
 """the bot token saved in env vars as 'TOKEN' """
 TOKEN = os.getenv("TOKEN")
+DATABASE_URL = "postgres://bfnplclxcooxcb:36479f9e819b4ed4348bd49141bdd05bdfdd59403b41c8a99536208d3e02d74a@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d82fhi7b0deu4d"
 
 prices = {
         "pine log": 2000,
@@ -59,9 +60,13 @@ prices = {
         }
 
 
-
-
-
+categories = [ "logs",
+                "ores",
+                "relics",
+                "bars",
+                "fish_salt",
+                "magic"
+            ] 
 
 
 
@@ -134,6 +139,7 @@ tailor = [
 jobs = [woodcutter,crafter,miner,smither,fisher,tailor]
 
 job_list = ["woodcutter","crafter","miner","smither","fisher","tailor"]
+job_rsc = {"woodcutter":"logs","crafter":"relics","miner":"ores","smither":"bars","fisher":"fish_salt","tailor":"magic"}
 
 worker_tiers = [
         "worker",
@@ -145,8 +151,6 @@ worker_tiers = [
         ]  
 
 
-        
-        
 rates = {
     "worker": 99,
     "elite worker": 99.1,
