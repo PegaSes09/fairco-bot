@@ -2,7 +2,7 @@ import os
 
 """the bot token saved in env vars as 'TOKEN' """
 TOKEN = os.getenv("TOKEN")
-DATABASE_URL = "postgres://bfnplclxcooxcb:36479f9e819b4ed4348bd49141bdd05bdfdd59403b41c8a99536208d3e02d74a@ec2-54-155-110-181.eu-west-1.compute.amazonaws.com:5432/d82fhi7b0deu4d"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 prices = {
         "pine log": 2000,
