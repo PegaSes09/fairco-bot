@@ -142,6 +142,7 @@ job_list = ["woodcutter","crafter","miner","smither","fisher","tailor"]
 job_rsc = {"woodcutter":"logs","crafter":"relics","miner":"ores","smither":"bars","fisher":"fish_salt","tailor":"magic"}
 
 worker_tiers = [
+        "No Commission September",
         "worker",
         "elite worker",
         "goat worker",
@@ -152,6 +153,7 @@ worker_tiers = [
 
 
 rates = {
+    "No Commission September": 100,
     "worker": 99,
     "elite worker": 99.1,
     "goat worker": 99.2,
