@@ -263,6 +263,8 @@ class MasterUpdater(interactions.Extension):
         
         id:str = ctx.data.components[0].components[0].custom_id
         category = id.split("_")[0]
+        if category == "fish" :
+            category = "fish_salt"
 
         async def check(comp_ctx):
             if int(comp_ctx.author.user.id) == int(ctx.author.user.id):
