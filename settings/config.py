@@ -154,12 +154,12 @@ worker_tiers = [
 
 rates = {
     "No Commission September": 100,
-    "worker": 99,
-    "elite worker": 99.1,
-    "goat worker": 99.2,
-    "supreme worker": 99.3,
-    "immortal worker": 99.4,
-    "knight of workers": 99.5
+    "worker": 95,
+    "elite worker": 95.5,
+    "goat worker": 96,
+    "supreme worker": 96.5,
+    "immortal worker": 97,
+    "knight of workers": 98
 }
 
 
