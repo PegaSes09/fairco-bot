@@ -376,7 +376,7 @@ class MasterUpdater(interactions.Extension):
             
             msg = ""
             for tier in tier_list :
-                msg = msg + tier + ' : ' + str(rates[tier]) + '\n' 
+                msg = msg + tier + ' : ' + str(rates[tier]) + "%" + '\n' 
             await ctx.send(msg)
 
                  
