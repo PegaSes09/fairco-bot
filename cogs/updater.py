@@ -1,5 +1,3 @@
-from ast import arg
-from pprint import pprint
 import interactions
 import interactions as it
 from interactions import Client, Button, ButtonStyle, SelectMenu, SelectOption, ActionRow, Modal, TextInput,TextStyleType
@@ -11,7 +9,6 @@ import interactions.ext.wait_for
 from interactions.ext.wait_for import wait_for_component, wait_for
 
 from settings.config import *
-#from db_helper import *
 
 import pymongo
 
