@@ -4,18 +4,20 @@ import interactions as it
 from interactions import Client, Button, ButtonStyle, SelectMenu, SelectOption, ActionRow
 from interactions import CommandContext as CC
 from interactions import ComponentContext as CPC
-from db_helper import retrieve
 
 from settings.config import *
 from interactions.ext.wait_for import wait_for, setup,wait_for_component
 
-import logging
+
+import pymongo
 
 
 
 
-#presence = it.PresenceActivity(name="Calculator", type=it.PresenceActivityType.GAME)
-bot = Client(token=TOKEN,disable_sync=False)
+presence = it.PresenceActivity(name="Calculator", type=it.PresenceActivityType.GAME)
+bot = Client(token=TOKEN,disable_sync=False,presence=it.ClientPresence(activities=[presence]))
+mclient = pymongo.MongoClient(DB_URL)
+
 #logging.basicConfig(level=logging.DEBUG)
 
 
@@ -60,9 +62,11 @@ def make_rsc_menu(menu:SelectMenu,items_list:list):
     return menu
 
 def calc(amount:int,rsc:str,tier:str):
-    prices_list = retrieve("prices_list")
+    mdb = mclient["Company"]
+    prices_list = mdb["fairco"].find_one({"_id":"prices"})
+    _rates = mdb["fairco"].find_one({"_id":"rates"})
     price = prices_list[rsc.lower()]
-    rate = rates[tier]
+    rate = _rates[tier]
     payment = amount * price * rate / 100
     return int(payment)
 
@@ -77,8 +81,7 @@ def calc(amount:int,rsc:str,tier:str):
 
 @bot.command(   name="pay", 
                 description="calculate worker's payment", 
-                scope = [839662151010353172,712120246915301429,
-                922854662141526037], 
+                scope = [839662151010353172,712120246915301429,922854662141526037], 
                 options=[it.Option( name="job",
                                     description="the worker's job",
                                     type=it.OptionType.STRING,
@@ -104,8 +107,15 @@ async def pay(ctx:CC,job:str,amount:str):
     selected_tier = "worker"
     selected_job = job
     selected_rsc = "pine log"
+    mdb = mclient["Company"]
+    _collection = mdb["fairco"]
+    raw_rates:dict = _collection.find_one({"_id":"rates"})
+    clean_rates = {i:raw_rates[i] for i in raw_rates if i!='_id'}
+    worker_tiers = list(clean_rates.keys())
 
-    resources = retrieve("resources_list")
+    
+    mdb = mclient["Company"]
+    resources = mdb["fairco"].find_one({"_id":"resources"})
     rsc_list = resources[job_rsc[job]]
 
 
