@@ -1,7 +1,7 @@
 import asyncio
 import os
 import interactions as it
-from interactions import Client, Button, ButtonStyle, SelectMenu, SelectOption, ActionRow
+from interactions import Client, Button, SelectMenu, ActionRow
 from interactions import CommandContext as CC
 from interactions import ComponentContext as CPC
 
