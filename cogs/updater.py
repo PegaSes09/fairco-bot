@@ -92,7 +92,16 @@ class MasterUpdater(interactions.Extension):
 
         return items_prices
     
-
+    def tablify(self,ip:dict) -> str:
+        """turn a dict into a tabulor format"""
+        longest = 0
+        rsc_list = ""
+        for k in ip:
+            if len(k)>longest:longest=len(k)
+        for rsc in ip:
+            temp_rsc = rsc + " "*(longest-len(rsc)+1)+f": {'{:,}'.format(ip[rsc])}"
+            rsc_list = rsc_list + temp_rsc + '\n'
+        return rsc_list
     
     def make_menu(self,options_list:list[str],ph:str,id:str):
         """create SelectMenu from given parameters"""
@@ -134,7 +143,22 @@ class MasterUpdater(interactions.Extension):
             )
         await ctx.popup(modal)
 
-
+    def embed_maker(self,choice):
+        fields = []
+        sections = {"green" : [["logs","relics"],0x2A7E19],"grey":[["ores","bars"],0x838579],"blue":[["fish_salt","magic"],0xC2DFFF]}
+        section = sections[choice]
+        for part in section[0]:
+            _resources = self.get_items_prices(part)
+            _text = self.tablify(_resources)
+            _part = part.replace("_","/").capitalize()
+            _field = it.EmbedField(name=f"**{_part}**",value=f"```{_text}```",inline=True)
+            #False if section.index(part)==len(section)-1 else True
+            fields.append(_field)
+        embed = it.Embed(title="Resources' Prices",
+                        description="**Prices are subject to change**",
+                        fields=fields,
+                        color=section[1])
+        return embed 
 
 
     @interactions.extension_command(
@@ -190,7 +214,11 @@ class MasterUpdater(interactions.Extension):
                         name="category",
                         description="the resource's category",
                         type=it.OptionType.STRING,
-                        choices = make_choices(categories),
+                        choices = [
+                            it.Choice(name="Logs/Relics",value="green"),
+                            it.Choice(name="Ores/Bars",value="grey"),
+                            it.Choice(name="Magic-Fish/Salt",value="blue")
+                        ],
                         required=True)
                         ]   
                     )
@@ -265,12 +293,11 @@ class MasterUpdater(interactions.Extension):
                 await ctx.edit("timed out!",components=[]) 
             
         elif sub_command == "view":
-            category_s_resources = self.get_items_prices(category)
-            msg = ""
-            for rsc in category_s_resources:
-                msg = msg + rsc + ' : ' + "{:,}".format(category_s_resources[rsc]) + '\n' 
-            await ctx.send(msg)
+            embed = self.embed_maker(choice=category)
+            await ctx.send(embeds=embed)
             
+            
+      
 
 
             
