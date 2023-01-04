@@ -7,11 +7,11 @@ DB_URL = os.getenv("DB_URL")
 
 
 job_list = ["woodcutter","crafter","miner","smither","fisher","tailor"]
-job_rsc = {"woodcutter":"logs","crafter":"relics","miner":"ores","smither":"bars","fisher":"fish_salt","tailor":"magic"}
+job_rsc = {"woodcutter":"logs","crafter":"relics","miner":"ores","smither":"bars","fisher":"fish","tailor":"magic"}
 categories = [ "logs",
                 "ores",
                 "relics",
                 "bars",
-                "fish_salt",
+                "fish",
                 "magic"
             ] 

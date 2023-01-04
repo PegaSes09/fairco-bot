@@ -145,7 +145,7 @@ class MasterUpdater(interactions.Extension):
 
     def embed_maker(self,choice):
         fields = []
-        sections = {"green" : [["logs","relics"],0x2A7E19],"grey":[["ores","bars"],0x838579],"blue":[["fish_salt","magic"],0xC2DFFF]}
+        sections = {"green" : [["logs","relics"],0x2A7E19],"grey":[["ores","bars"],0x838579],"blue":[["fish","magic"],0xC2DFFF]}
         section = sections[choice]
         for part in section[0]:
             _resources = self.get_items_prices(part)
@@ -164,7 +164,7 @@ class MasterUpdater(interactions.Extension):
     @interactions.extension_command(
         name="resource", 
         description="modify the resource database",
-        scope = [839662151010353172,712120246915301429,922854662141526037],  
+        scope = [839662151010353172,922854662141526037,712120246915301429],  
         options= [
             it.Option(
                 name="update",
@@ -217,7 +217,7 @@ class MasterUpdater(interactions.Extension):
                         choices = [
                             it.Choice(name="Logs/Relics",value="green"),
                             it.Choice(name="Ores/Bars",value="grey"),
-                            it.Choice(name="Magic-Fish/Salt",value="blue")
+                            it.Choice(name="Magic/Fish",value="blue")
                         ],
                         required=True)
                         ]   
@@ -304,7 +304,7 @@ class MasterUpdater(interactions.Extension):
     @interactions.extension_command(
         name="rates", 
         description="modify the rates database",
-        scope = [839662151010353172,712120246915301429,922854662141526037],  
+        scope = [839662151010353172,922854662141526037,712120246915301429],  
         options= [
             it.Option(
                 name="insert",
@@ -412,8 +412,6 @@ class MasterUpdater(interactions.Extension):
         
         id:str = ctx.data.components[0].components[0].custom_id
         category = id.split("_")[0]
-        if category == "fish" :
-            category = "fish_salt"
 
         async def check(comp_ctx):
             if int(comp_ctx.author.user.id) == int(ctx.author.user.id):
