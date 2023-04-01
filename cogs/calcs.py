@@ -16,11 +16,6 @@ class Calc(interactions.Extension):
 
     def __init__(self,client : Client) -> None:
         self.bot = client
-        self.prices = prices
-        self.rates = rates
-        self.jobs = jobs
-        self.job_list = job_list
-        self.tiers = worker_tiers
 
         return
     
