@@ -529,3 +529,4 @@ class MasterUpdater(interactions.Extension):
 
 def setup(client : Client):
     MasterUpdater(client)
+    print("updater loaded")

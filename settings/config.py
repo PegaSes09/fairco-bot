@@ -6,8 +6,22 @@ TOKEN = os.getenv("TOKEN")
 DB_URL = os.getenv("DB_URL")
 
 
-job_list = ["woodcutter","crafter","miner","smither","fisher","tailor"]
-job_rsc = {"woodcutter":"logs","crafter":"relics","miner":"ores","smither":"bars","fisher":"fish","tailor":"magic"}
+job_list=[
+    "woodcutter",
+    "crafter",
+    "miner",
+    "smither",
+    "fisher",
+    "tailor"
+]
+job_rsc={
+    "woodcutter": "logs",
+    "crafter": "relics",
+    "miner": "ores",
+    "smither": "bars",
+    "fisher": "fish",
+    "tailor": "magic"
+}
 categories = [ "logs",
                 "ores",
                 "relics",
